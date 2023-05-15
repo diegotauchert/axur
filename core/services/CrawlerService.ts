@@ -13,7 +13,7 @@ export default class CollectionService {
 
   private baseUrl = process.env.NEXT_PUBLIC_URL_API;
 
-  public async post(data: any): Promise<CrawlInterface[]> {
+  public async post(data: any): Promise<CrawlInterface> {
     try {
       const response = await this.http.post(`${this.baseUrl}/crawl`, {
         method: "POST",
@@ -27,7 +27,7 @@ export default class CollectionService {
     }
   }
 
-  public async get(id: string): Promise<CrawlInterface[]> {
+  public async get(id: string): Promise<CrawlInterface> {
     try {
       const response = await this.http.get(`${this.baseUrl}/crawl/${id}`);
       const payload = await response.json();
