@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { FaTimesCircle } from 'react-icons/fa';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { BiRefresh } from 'react-icons/bi';
-import { FiSearch } from 'react-icons/fi';
 import { styled } from 'styled-components'
 import { CrawlInterfaceFull } from '@/interfaces/CrawlInterface';
 import { useRouter } from 'next/router';
@@ -79,7 +78,6 @@ const TableHistoric = ({data, refreshTable}: IPropType) => {
             <th><FormattedMessage id="label.date" /></th>
             <th><FormattedMessage id="label.status" /></th>
             <th><FormattedMessage id="label.urls" /></th>
-            <th><FormattedMessage id="label.see" /></th>
           </tr>
         </thead>
 
@@ -104,7 +102,6 @@ const TableHistoric = ({data, refreshTable}: IPropType) => {
                 el.urls.map(url => <p key={url}>{url}</p>) 
                 : '--'}
               </td>
-              <td><FiSearch size={18} /></td>
             </tr>
           ))}
         </tbody>

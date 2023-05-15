@@ -17,6 +17,7 @@
       "@/dto/*": ["core/DTO/*"],
       "@/providers/*": ["core/providers/*"],
       "@/contexts/*": ["core/contexts/*"],
+      "@/helpers/*": ["core/helpers/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,

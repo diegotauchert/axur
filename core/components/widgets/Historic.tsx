@@ -6,6 +6,7 @@ import CrawlerService from '../../services/CrawlerService';
 import { CrawlInterfaceFull, CrawlInterface } from '@/interfaces/CrawlInterface';
 import TableHistoric from '@/widgets/TableHistoric';
 import { BiRefresh } from 'react-icons/bi';
+import { sortByDate } from '@/helpers/utils';
 
 const StyledMain = styled.div`
   min-width: 50vw;
@@ -80,7 +81,7 @@ const Historic = () => {
         :
           <>
             { result?.length > 0 ? 
-              <TableHistoric data={result} refreshTable={refreshTable} />
+              <TableHistoric data={sortByDate(result)} refreshTable={refreshTable} />
             : 
               <StyledNotFound><FormattedMessage id="text.noData" /></StyledNotFound>
             }
