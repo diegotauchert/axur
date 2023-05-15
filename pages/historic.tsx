@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import AddForm from '../core/components/widgets/AddForm';
+import Historic from '../core/components/widgets/Historic';
 
 const StyledMain = styled.main`
   display: flex;
@@ -8,10 +8,10 @@ const StyledMain = styled.main`
   height: 100%;
 `;
 
-export default function HomePage() {
+export default function HistoricPage() {
   return (
     <StyledMain>
-      <AddForm />
+      <Historic />
     </StyledMain>
   )
 }

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-// import AppProvider from '../providers/AppProvider';
-import LocaleProvider from '../../providers/LocaleProvider';
+import AppProvider from '@/providers/AppProvider';
+import LocaleProvider from '@/providers/LocaleProvider';
 import { styled } from 'styled-components'
 
 const StyledWrapper = styled.div`
@@ -18,7 +18,9 @@ export default function WrapperContent({children}: IPropType) {
   return (
     <StyledWrapper>
       <LocaleProvider>
+        <AppProvider>
           {children}
+        </AppProvider>
       </LocaleProvider>
     </StyledWrapper>
   )

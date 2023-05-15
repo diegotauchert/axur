@@ -1,5 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 import { styled } from 'styled-components'
+import Menu from '@/widgets/Menu';
 
 const StyledHeader = styled.header`
   width: 100vw;
@@ -33,6 +34,8 @@ const Footer = () => {
         >
           <FormattedMessage id="app.developedBy" />
         </a>
+
+        <Menu />
     </StyledHeader>
   )
 }

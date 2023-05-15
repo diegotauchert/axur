@@ -15,6 +15,8 @@
       "@/services/*": ["core/services/*"],
       "@/locales/*": ["core/locales/*"],
       "@/dto/*": ["core/DTO/*"],
+      "@/providers/*": ["core/providers/*"],
+      "@/contexts/*": ["core/contexts/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,
