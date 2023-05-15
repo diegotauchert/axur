@@ -1,0 +1,40 @@
+import HttpClientFetch from '../handlers/HttpClientFetch';
+import { HttpClientInterface } from '../interfaces/HttpClientInterface';
+import CrawlFactory from '../factories/CrawlFactory';
+import { CrawlInterface } from '../interfaces/CrawlInterface';
+
+export default class CollectionService {
+
+  http: HttpClientInterface;
+
+  constructor() {
+    this.http = new HttpClientFetch();
+  }
+
+  private baseUrl = process.env.NEXT_PUBLIC_URL_API;
+
+  public async post(data: any): Promise<CrawlInterface[]> {
+    try {
+      const response = await this.http.post(`${this.baseUrl}/crawl`, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      const payload = await response.json();
+
+      return CrawlFactory.builder(payload || '');
+    }catch(error){
+      throw new Error(`Something went wrong: ${error}`);
+    }
+  }
+
+  public async get(id: string): Promise<CrawlInterface[]> {
+    try {
+      const response = await this.http.get(`${this.baseUrl}/crawl/${id}`);
+      const payload = await response.json();
+
+      return CrawlFactory.builder(payload || '');
+    }catch(error){
+      throw new Error(`Something went wrong: ${error}`);
+    }
+  }
+}
