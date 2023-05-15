@@ -29,7 +29,19 @@ yarn install
 and then 
 
 ```bash
-yarn dev
+yarn start
+```
+
+to build the application 
+
+```bash
+yarn build
+```
+
+to run the tests 
+
+```bash
+yarn test
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

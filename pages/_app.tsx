@@ -5,6 +5,7 @@ import { theme } from '../core/theme/primary';
 import WrapperContent from '../core/components/widgets/WrapperContent';
 import Footer from '../core/components/layout/Footer';
 import Header from '../core/components/layout/Header';
+import ErrorBoundary from '@/widgets/ErrorBoundary';
 
 function App({ Component, pageProps }) {
   return (
@@ -17,7 +18,9 @@ function App({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <WrapperContent>
           <Header />
-          <Component {...pageProps} />
+          <ErrorBoundary>
+            <Component {...pageProps} />
+          </ErrorBoundary>
           <Footer />
         </WrapperContent>
       </ThemeProvider>
