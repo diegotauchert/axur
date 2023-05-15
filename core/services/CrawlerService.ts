@@ -1,9 +1,10 @@
 import HttpClientFetch from '../handlers/HttpClientFetch';
-import { HttpClientInterface } from '../interfaces/HttpClientInterface';
-import CrawlFactory from '../factories/CrawlFactory';
-import { CrawlInterface } from '../interfaces/CrawlInterface';
+import { HttpClientInterface } from '@/interfaces/HttpClientInterface';
+import CrawlFactory from '@/factories/CrawlFactory';
+import { CrawlInterface } from '@/interfaces/CrawlInterface';
+import { CrawlerDto } from '@/dto/CrawlerDTO';
 
-export default class CollectionService {
+export default class CrawlerService {
 
   http: HttpClientInterface;
 
@@ -13,12 +14,9 @@ export default class CollectionService {
 
   private baseUrl = process.env.NEXT_PUBLIC_URL_API;
 
-  public async post(data: any): Promise<CrawlInterface> {
+  public async post(data: string): Promise<CrawlInterface> {
     try {
-      const response = await this.http.post(`${this.baseUrl}/crawl`, {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      const response = await this.http.post(`${this.baseUrl}/crawl`, new CrawlerDto(data).makeDTO());
       const payload = await response.json();
 
       return CrawlFactory.builder(payload || '');

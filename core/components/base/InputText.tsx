@@ -1,3 +1,4 @@
+import { ChangeEventHandler } from 'react';
 import { useIntl } from 'react-intl';
 import { styled } from 'styled-components'
 
@@ -22,7 +23,14 @@ const StyledInput = styled.input`
   }
 `;
 
-export const InputText = () => {
+type IPropType = {
+  minLength?: number;
+  maxLength?: number;
+  required?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>
+}
+
+export const InputText = ({minLength, maxLength, required, onChange}: IPropType) => {
 
   const intl = useIntl();
 
@@ -30,6 +38,10 @@ export const InputText = () => {
     <StyledContainer>
       <StyledInput 
         type="text"
+        minLength={minLength}
+        maxLength={maxLength}
+        required={required}
+        onChange={onChange}
         placeholder={intl.formatMessage({id: "input.placeholder"})}
       />
     </StyledContainer>
