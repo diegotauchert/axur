@@ -6,6 +6,7 @@ import { BiRefresh } from 'react-icons/bi';
 import { FiSearch } from 'react-icons/fi';
 import { styled } from 'styled-components'
 import { CrawlInterfaceFull } from '@/interfaces/CrawlInterface';
+import { useRouter } from 'next/router';
 
 const StyledTable = styled.table`
   width: 100%;
@@ -55,13 +56,17 @@ const StyledButton = styled.button`
 
 type IPropType = {
   data: CrawlInterfaceFull[];
-  refreshTable: () => void
+  refreshTable?: () => void;
 }
 
 const TableHistoric = ({data, refreshTable}: IPropType) => {
+  const router = useRouter();
 
   const handleClick = (id:string) => {
-    alert(id)
+    router.push({
+      pathname: '/view',
+      query: { id: id }
+    });
   }
 
   return (
@@ -104,10 +109,12 @@ const TableHistoric = ({data, refreshTable}: IPropType) => {
           ))}
         </tbody>
       </StyledTable>
-
+      
+      {refreshTable ? 
       <StyledButton type="button" onClick={refreshTable}>
         <BiRefresh size="20" /> <FormattedMessage id="btn.updateTable" />
       </StyledButton>
+      : ''}
     </>
   )
 }

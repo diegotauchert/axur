@@ -3,6 +3,7 @@
   "app.powered": "Powered by",
   "app.developedBy": "Developed by Diego Tauchert",
   "app.historic": "Historic",
+  "app.view": "View",
   "input.placeholder": "Type an inspection request",
   "text.noData": "No results found!",
   "label.id": "ID",
