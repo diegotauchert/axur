@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState, useCallback, memo } from 'react';
 import { CrawlContext } from '@/contexts/CrawlContext';
 import { FormattedMessage } from 'react-intl';
 import { styled } from 'styled-components';
@@ -44,29 +44,27 @@ const Historic = () => {
   const CrawlServiceInstance = new CrawlerService();
   const { ids } = useContext(CrawlContext);
 
-  const fetchData = async (id: CrawlInterface) => {
+  const fetchData = async (crawl: CrawlInterface) => {
     setLoading(true);
-    await CrawlServiceInstance.get(id.id).then((res) => {
-      const newResult = {...res, term: id.term, date: id.date};
+    await CrawlServiceInstance.get(crawl.id).then((res) => {
+      const newResult = {...res, term: crawl.term, date: crawl.date};
       setResult((current:CrawlInterfaceFull[]) => {
         const currentFiltered = current.filter((el:CrawlInterfaceFull) => el.id !== newResult.id);
-        return (
-          [...currentFiltered, newResult]
-        )
+        return [...currentFiltered, newResult];
       });
     }).finally(() => setLoading(false));
   }
 
-  const refreshTable = () => {
+  const refreshTable = useCallback(() => {
     if(ids.length > 0){
       ids.map((id: CrawlInterface) => {
         fetchData(id);
-      })
+      });
     }
-  }
+  }, []);
 
   useEffect(() => {
-    refreshTable();
+      refreshTable();
   }, []);
 
   return (
@@ -92,4 +90,4 @@ const Historic = () => {
   )
 }
 
-export default Historic;
+export default memo(Historic);

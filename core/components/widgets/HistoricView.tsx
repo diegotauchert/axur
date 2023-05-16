@@ -76,7 +76,7 @@ const Historic = () => {
   return (
     <StyledMain>
       <h1>
-        <button onClick={() => router.back()}><BsArrowLeft size="25" /></button> <FormattedMessage id="app.title" /><small> / <FormattedMessage id="app.historic" /> <small>/ <FormattedMessage id="app.view" /></small></small>
+        <button id="btnBack" onClick={() => router.back()}><BsArrowLeft size="25" /></button> <FormattedMessage id="app.title" /><small> / <FormattedMessage id="app.historic" /> <small>/ <FormattedMessage id="app.view" /></small></small>
       </h1>
       <h2><small>ID: #{viewID}</small></h2>
 
