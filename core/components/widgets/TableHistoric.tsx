@@ -83,7 +83,7 @@ const TableHistoric = ({data, refreshTable}: IPropType) => {
 
         <tbody>
           {data.map((el:CrawlInterfaceFull, key: number) => (
-            <tr key={key} onClick={() => handleClick(el.id)}>
+            <tr key={key} onClick={() => handleClick(el.id)} title="Click to View">
               <td><small><strong>{el.id}</strong></small></td>
               <td>{el.term}</td>
               <td>

@@ -38,7 +38,7 @@ type IPropType = {
 
 export const Alert = ({message, handleCloseAlert}: IPropType) => {
   return (
-      <StyledAlert className={message.type}>
+      <StyledAlert className={`alert ${message.type}`}>
         <span>{message.message}</span>
 
         <StyledCloseAlert onClick={handleCloseAlert}>X</StyledCloseAlert>

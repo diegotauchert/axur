@@ -28,6 +28,7 @@ const Footer = () => {
         href="https://www.axur.com/pt-br/home"
         target="_blank"
         rel="noopener noreferrer"
+        id="powered"
       >
         <FormattedMessage id="app.powered" /> <Image src="/assets/images/logo.webp" alt="Axur" width={72} height={16} />
       </StyledLink>

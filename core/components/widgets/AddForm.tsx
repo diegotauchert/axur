@@ -8,6 +8,8 @@ import { FiSearch } from 'react-icons/fi';
 import { styled } from 'styled-components';
 import CrawlerService from '../../services/CrawlerService';
 import { CrawlInterface } from '../../interfaces/CrawlInterface';
+import { INPUT_MINLENGTH, INPUT_MAXLENGTH } from '@/constants/globalVars';
+import { checkValidation } from '@/helpers/utils';
 
 const StyledFormContainer = styled.div`
   position: relative;
@@ -27,8 +29,15 @@ const AddForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+    const validate = checkValidation(INPUT_MINLENGTH, INPUT_MAXLENGTH,request);
+    if(validate){
+      setMessage({type: 'error', message: validate});
+      return;
+    }
+
     setRequest("...");
-    
+
     await CrawlServiceInstance.post(request).then((res:CrawlInterface) => {
       crawlIdsSaved(res);
       setMessage({type: 'success', message: "Saved with success"});
@@ -38,6 +47,11 @@ const AddForm = () => {
 
   const handleCloseAlert = () => {
     setMessage({type: '', message: ''})
+  }
+
+  const handleChange = (e) => {
+    setRequest(e.target.value);
+    handleCloseAlert();
   }
 
   return (
@@ -53,15 +67,17 @@ const AddForm = () => {
       <StyledFormContainer>
         <form onSubmit={handleSubmit} method="POST" autoComplete="off">
           <InputText 
-            minLength={4} 
-            maxLength={32} 
+            name="newRequestToCrawl"
+            minLength={INPUT_MINLENGTH} 
+            maxLength={INPUT_MAXLENGTH} 
             required 
-            onChange={(e:React.ChangeEvent<HTMLInputElement>) => setRequest(e.target.value)} 
+            onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)} 
             value={request}
           />
           <Button 
             type="submit" 
             value={<FiSearch size={25} />}
+            id="btnSubmit"
            />
         </form>
       </StyledFormContainer>

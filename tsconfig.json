@@ -18,6 +18,7 @@
       "@/providers/*": ["core/providers/*"],
       "@/contexts/*": ["core/contexts/*"],
       "@/helpers/*": ["core/helpers/*"],
+      "@/constants/*": ["core/constants/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,

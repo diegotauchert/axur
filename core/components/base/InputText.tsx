@@ -29,9 +29,10 @@ type IPropType = {
   required?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   value?: string;
+  name?: string;
 }
 
-export const InputText = ({minLength, maxLength, required, onChange, value}: IPropType) => {
+export const InputText = ({minLength, maxLength, required, onChange, value, name}: IPropType) => {
 
   const intl = useIntl();
 
@@ -39,6 +40,7 @@ export const InputText = ({minLength, maxLength, required, onChange, value}: IPr
     <StyledContainer>
       <StyledInput 
         type="text"
+        name={name}
         minLength={minLength}
         maxLength={maxLength}
         required={required}
