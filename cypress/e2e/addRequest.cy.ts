@@ -11,7 +11,7 @@ describe('Add an inspection request and check if its showing on Historic', () =>
   })
 
   it('Add and inspection request', () => {
-    cy.get('h1').should('be.visible').contains('AXUR crawling');
+    cy.get('h1').should('be.visible').contains('AXUR / crawling');
     cy.get('a').first().should('be.visible').contains('Developed by Diego Tauchert');
     cy.get('#powered').should('be.visible').contains('Powered by');
     cy.get('input[placeholder*="Type an inspection request"]').should('be.visible');

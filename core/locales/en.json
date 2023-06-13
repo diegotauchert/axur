@@ -1,5 +1,5 @@
 {
-  "app.title": "AXUR crawling",
+  "app.title": "AXUR / crawling",
   "app.powered": "Powered by",
   "app.developedBy": "Developed by Diego Tauchert",
   "app.historic": "Historic",
@@ -10,6 +10,9 @@
   "label.term": "Term",
   "label.date": "Date",
   "label.status": "Status",
+  "label.savedSuccess": "Saved with success",
   "label.urls": "URLs",
-  "btn.updateTable": "Update Table"
+  "btn.updateTable": "Update Table",
+  "menu.option1": "Add Inspection",
+  "menu.option2": "Historic"
 }

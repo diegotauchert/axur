@@ -1,6 +1,6 @@
 import { useState, useContext, memo } from 'react';
 import { CrawlContext } from '@/contexts/CrawlContext';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import {InputText} from '../base/InputText';
 import {Button} from '../base/Button';
 import {Alert} from '@/base/Alert';
@@ -25,7 +25,8 @@ const AddForm = () => {
   const CrawlServiceInstance = new CrawlerService();
   const [request, setRequest] = useState<string>('');
   const [message, setMessage] = useState<{type: string, message: string}>();
-  const { crawlIdsSaved } = useContext(CrawlContext)
+  const { crawlIdsSaved } = useContext(CrawlContext);
+  const intl = useIntl();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ const AddForm = () => {
 
     await CrawlServiceInstance.post(request).then((res:CrawlInterface) => {
       crawlIdsSaved(res);
-      setMessage({type: 'success', message: "Saved with success"});
+      setMessage({type: 'success', message: intl.formatMessage({id: "label.savedSuccess"})});
     }).catch(err => setMessage({type: 'error', message: err}))
     .finally(() => setRequest(""));
   }

@@ -1,15 +1,18 @@
 {
-  "app.title": "AXUR crawling",
+  "app.title": "AXUR / busca de termos",
   "app.powered": "Feito para",
   "app.developedBy": "Desenvolvido Por Diego Tauchert",
   "app.historic": "Histórico",
   "app.view": "Ver",
-  "input.placeholder": "Digite uma solicitação de inspeção",
+  "input.placeholder": "Digite a solicitação de inspeção",
   "text.noData": "Nenhum resultado encontrado!",
   "label.id": "ID",
   "label.term": "Termo",
   "label.date": "Data",
   "label.status": "Status",
+  "label.savedSuccess": "Salvo com sucesso",
   "label.urls": "URLs",
-  "btn.updateTable": "Atualizar Tabela"
+  "btn.updateTable": "Atualizar Tabela",
+  "menu.option1": "Adicionar",
+  "menu.option2": "Histórico"
 }

@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState, useCallback, memo } from 'react';
+import { useEffect, useContext, useState, memo } from 'react';
 import { CrawlContext } from '@/contexts/CrawlContext';
 import { FormattedMessage } from 'react-intl';
 import { styled } from 'styled-components';
@@ -7,6 +7,7 @@ import { CrawlInterfaceFull, CrawlInterface } from '@/interfaces/CrawlInterface'
 import TableHistoric from '@/widgets/TableHistoric';
 import { BiRefresh } from 'react-icons/bi';
 import { sortByDate } from '@/helpers/utils';
+import { TIME_TO_UPDATE_TABLE } from '@/constants/globalVars';
 
 const StyledMain = styled.div`
   min-width: 50vw;
@@ -55,16 +56,22 @@ const Historic = () => {
     }).finally(() => setLoading(false));
   }
 
-  const refreshTable = useCallback(() => {
+  const refreshTable = () => {
     if(ids.length > 0){
       ids.map((id: CrawlInterface) => {
         fetchData(id);
       });
     }
-  }, []);
+  };
 
   useEffect(() => {
       refreshTable();
+
+      const intervalRefresh = setInterval(() => {
+        refreshTable();
+      }, TIME_TO_UPDATE_TABLE);
+
+      return () => clearInterval(intervalRefresh);
   }, []);
 
   return (
@@ -79,7 +86,7 @@ const Historic = () => {
         :
           <>
             { result?.length > 0 ? 
-              <TableHistoric data={sortByDate(result)} refreshTable={refreshTable} />
+              <TableHistoric data={sortByDate(result)} refreshTable={refreshTable} /> 
             : 
               <StyledNotFound><FormattedMessage id="text.noData" /></StyledNotFound>
             }

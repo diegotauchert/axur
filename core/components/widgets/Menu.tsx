@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { styled } from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import { BiAddToQueue, BiTime } from 'react-icons/bi';
 import {useRouter} from 'next/router';
 
@@ -19,8 +20,8 @@ const Menu = () => {
 
   return (
     <StyledMenu>
-      <Link href="/" className={router.pathname === '/' ? 'active' : ''}><BiAddToQueue /> Add Inspection</Link>
-      <Link href="/historic" className={router.pathname === '/historic' ? 'active' : ''}><BiTime /> Historic</Link>
+      <Link href="/" className={router.pathname === '/' ? 'active' : ''}><BiAddToQueue /> <FormattedMessage id="menu.option1" /></Link>
+      <Link href="/historic" className={router.pathname === '/historic' ? 'active' : ''}><BiTime /> <FormattedMessage id="menu.option2" /></Link>
     </StyledMenu>
   )
 }
