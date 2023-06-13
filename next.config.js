@@ -2,7 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
-    styledComponents: true,
+    styledComponents: true
+  },
+  i18n: {
+    locales: ['en', 'pt-BR'],
+    defaultLocale: 'en'
   }
 }
 

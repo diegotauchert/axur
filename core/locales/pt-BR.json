@@ -1,0 +1,15 @@
+{
+  "app.title": "AXUR crawling",
+  "app.powered": "Feito para",
+  "app.developedBy": "Desenvolvido Por Diego Tauchert",
+  "app.historic": "Histórico",
+  "app.view": "Ver",
+  "input.placeholder": "Digite uma solicitação de inspeção",
+  "text.noData": "Nenhum resultado encontrado!",
+  "label.id": "ID",
+  "label.term": "Termo",
+  "label.date": "Data",
+  "label.status": "Status",
+  "label.urls": "URLs",
+  "btn.updateTable": "Atualizar Tabela"
+}

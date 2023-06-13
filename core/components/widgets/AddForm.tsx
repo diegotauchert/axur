@@ -30,7 +30,7 @@ const AddForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const validate = checkValidation(INPUT_MINLENGTH, INPUT_MAXLENGTH,request);
+    const validate = checkValidation(INPUT_MINLENGTH, INPUT_MAXLENGTH, request);
     if(validate){
       setMessage({type: 'error', message: validate});
       return;

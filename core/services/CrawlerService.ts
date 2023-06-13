@@ -5,18 +5,16 @@ import { CrawlInterface, CrawlGetInterface } from '@/interfaces/CrawlInterface';
 import { CrawlerDto } from '@/dto/CrawlerDTO';
 
 export default class CrawlerService {
-
-  http: HttpClientInterface;
-
-  constructor() {
-    this.http = new HttpClientFetch();
-  }
-
-  private baseUrl = process.env.NEXT_PUBLIC_URL_API;
+  public readonly uri: string = '/crawl';
+  
+  constructor(
+    public http: HttpClientInterface = new HttpClientFetch()
+  ) {}
 
   public async post(data: string): Promise<CrawlInterface> {
     try {
-      const response = await this.http.post(`${this.baseUrl}/crawl`, new CrawlerDto(data).makeDTO());
+      const crawlerDto = new CrawlerDto(data);
+      const response = await this.http.post(this.uri, crawlerDto.makeDTO());
       const payload = await response.json();
 
       return CrawlFactory.builder(payload, data);
@@ -27,7 +25,7 @@ export default class CrawlerService {
 
   public async get(id: string): Promise<CrawlGetInterface> {
     try {
-      const response = await this.http.get(`${this.baseUrl}/crawl/${id}`);
+      const response = await this.http.get(`${this.uri}/${id}`);
       const payload = await response.json();
 
       return CrawlFactory.builderGetPayload(payload || '');

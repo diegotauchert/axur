@@ -1,7 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 
 const Document = () => (
-  <Html lang="pt-br" className="scroll-smooth overscroll-none">
+  <Html>
     <Head>
       <meta charSet="utf-8" />
       <meta name="theme-color" content="#FFFFFF" />
