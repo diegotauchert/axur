@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { INPUT_MINLENGTH, INPUT_MAXLENGTH } from '@/constants/globalVars';
+
 const tooShortRequest:string = 'tes';
 const tooLongRequest:string = 'tesjkdskjdijsndjisndijsndijsndijnsidnisndisndisndikdflkdklsnd';
 const formattedText:string = 'tesjkdskjdijsndjisndijsndijsndij';
@@ -26,8 +28,8 @@ describe('Add an inspection request and check if its showing on Historic', () =>
     cy.getInputNameAndTypeValue('newRequestToCrawl', tooLongRequest);
 
     cy.get('input[placeholder*="Type an inspection request"]')
-      .should('have.attr', 'minlength', '4')
-      .should('have.attr', 'maxlength', '32')
+      .should('have.attr', 'minlength', `${INPUT_MINLENGTH}`)
+      .should('have.attr', 'maxlength', `${INPUT_MAXLENGTH}`)
       .invoke('val')
       .then((text) => text[0].length === formattedText.length);
 
@@ -43,6 +45,7 @@ describe('Add an inspection request and check if its showing on Historic', () =>
     cy.get('#btnSubmit').click();
     
     cy.wait('@postCrawl').then((interception) => {
+      expect(interception.response.statusCode).to.eq(200);
       expect(interception.response.body).property('id').to.equal(crawlerId)
     });
     cy.get('.alert').first().contains('Saved with success').should('be.visible');

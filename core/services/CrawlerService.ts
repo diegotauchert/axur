@@ -3,6 +3,7 @@ import { HttpClientInterface } from '@/interfaces/HttpClientInterface';
 import CrawlFactory from '@/factories/CrawlFactory';
 import { CrawlInterface, CrawlGetInterface } from '@/interfaces/CrawlInterface';
 import { CrawlerDto } from '@/dto/CrawlerDTO';
+import { HttpError } from '@/helpers/exceptions';
 
 export default class CrawlerService {
   public readonly uri: string = '/crawl';
@@ -12,25 +13,27 @@ export default class CrawlerService {
   ) {}
 
   public async post(data: string): Promise<CrawlInterface> {
-    try {
-      const crawlerDto = new CrawlerDto(data);
-      const response = await this.http.post(this.uri, crawlerDto.makeDTO());
+    const crawlerDto = new CrawlerDto(data);
+    const response = await this.http.post(this.uri, crawlerDto.makeDTO());
+
+    if(response.ok){
       const payload = await response.json();
+      CrawlFactory.builder(payload, data)
 
       return CrawlFactory.builder(payload, data);
-    }catch(error){
-      throw new Error(`Something went wrong: ${error}`);
     }
+    
+    throw new HttpError(`Request not saved`);
   }
 
   public async get(id: string): Promise<CrawlGetInterface> {
-    try {
-      const response = await this.http.get(`${this.uri}/${id}`);
-      const payload = await response.json();
+    const response = await this.http.get(`${this.uri}/${id}`);
 
+    if(response.ok){
+      const payload = await response.json();
       return CrawlFactory.builderGetPayload(payload || '');
-    }catch(error){
-      throw new Error(`Something went wrong: ${error}`);
     }
+    
+    throw new HttpError(`Listing not available`);
   }
 }

@@ -12,7 +12,6 @@ export default function LocaleProvider({ children }: ILocaleProviderProps) {
   const [locale, setLocale] = useState<string>(DEFAULT_LANG);
 
   useEffect(() => {
-    console.log(navigator.language)
     setLocale(navigator.language);
   }, []);
 

@@ -41,8 +41,14 @@ const AddForm = () => {
 
     await CrawlServiceInstance.post(request).then((res:CrawlInterface) => {
       crawlIdsSaved(res);
-      setMessage({type: 'success', message: intl.formatMessage({id: "label.savedSuccess"})});
-    }).catch(err => setMessage({type: 'error', message: err}))
+      setMessage({
+        type: 'success', 
+        message: intl.formatMessage({id: "label.savedSuccess"})
+      });
+    }).catch(err => setMessage({
+      type: 'error', 
+      message: `${err}`
+    }))
     .finally(() => setRequest(""));
   }
 

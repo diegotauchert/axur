@@ -9,8 +9,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
   }
-  
-  a{
+  a, button{
     text-decoration: none;
     transition: .6s ease all;
   }
@@ -19,6 +18,26 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: none;
     background: none;
+  }
+  .error-component{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    button{
+      background-color: #000;
+      color: #FFF;
+      padding: 0.3rem 1rem;
+      margin-left: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+
+      &:hover{
+        background-color: #444;
+      }
+    }
   }
 `;
  
